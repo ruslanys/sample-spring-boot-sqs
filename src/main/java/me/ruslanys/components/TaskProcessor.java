@@ -9,7 +9,6 @@ import me.ruslanys.models.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
@@ -34,7 +33,6 @@ public class TaskProcessor {
         this.mapper = mapper;
     }
 
-    @Async
     @JmsListener(destination = Application.PROCESSOR_QUEUE)
     public void onMessage(String message) throws JMSException {
         log.debug("Got a message <{}>", message);
